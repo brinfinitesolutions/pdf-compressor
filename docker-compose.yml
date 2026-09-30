@@ -1,0 +1,14 @@
+services:
+  bot:
+    image: pdf-compressor-bot:latest
+    build: .
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      UNLIMITED_CHAT_IDS: ${UNLIMITED_CHAT_IDS:-}
+      DATA_DIR: /app/data
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
